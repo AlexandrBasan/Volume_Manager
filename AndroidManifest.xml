@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.cbsb.aam.volume" android:versionCode="3" android:versionName="1.3">
+    <application android:icon="@drawable/icon" android:label="@string/app_name" android:theme="@android:style/Theme.Light">
+        <activity android:name="com.cbsb.aam.volume.A2DPVolumeSettings" android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name="com.cbsb.aam.volume.BluetoothA2dpBroadcastReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="android.bluetooth.a2dp.action.SINK_STATE_CHANGED" />
+                <!-- pre-2.0 intent name -->
+                <action android:name="android.bluetooth.a2dp.intent.action.SINK_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.cbsb.aam.volume.BluetoothHeadsetBroadcastReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="android.bluetooth.headset.action.STATE_CHANGED" />
+                <!-- pre-2.0 intent name -->
+                <action android:name="android.bluetooth.intent.action.HEADSET_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.cbsb.aam.volume.UserPresentBroadcastReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+    <service android:name="com.cbsb.aam.volume.HeadsetVolumeService"></service>
+      <activity            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode"
+            android:name="com.google.ads.AdActivity" />
+</application>
+    <uses-sdk android:minSdkVersion="3" android:targetSdkVersion="13"/>
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.INTERNET" />
+    
+</manifest>
